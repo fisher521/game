@@ -12,6 +12,7 @@ public class MultiPlayer
         Random generator = new Random();
         Scanner reader = new Scanner(System.in);
         boolean play = true;
+        
         while (play == true) {
             int r1 = generator.nextInt(6) + 1;
             int r2 = generator.nextInt(6) + 1;
