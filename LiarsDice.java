@@ -8,7 +8,7 @@ import java.util.Random;
  * @version (a version number or a date)
  */
 public class LiarsDice
-{   
+{
     public static void main (String [] args) {
         Random generator = new Random();
         Scanner reader = new Scanner(System.in);
