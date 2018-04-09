@@ -6,7 +6,7 @@ import java.util.Random;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SinglePlayer
+public class Singleplayer
 {
     public static void main (String [] args) {
         Random generator = new Random();

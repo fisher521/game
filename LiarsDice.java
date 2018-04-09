@@ -24,10 +24,10 @@ public class LiarsDice
         
             String response = reader.nextLine();
             if (response.equals ("1")) {
-                SinglePlayer.main(null);
+                Singleplayer.main(null);
             }
             else if (response.equals ("2")) {
-                MultiPlayer.main(null);
+                Multiplayer.main(null);
             }
             else if (response.equals ("3")) {
                 System.out.println ("Rules: ");
