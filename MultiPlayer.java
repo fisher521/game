@@ -8,8 +8,8 @@ import java.util.Random;
  */
 public class Multiplayer
 {
-    public static final Random generator = new Random();
-    public static final Scanner reader = new Scanner(System.in);
+    public static Random generator = new Random();
+    public static Scanner reader = new Scanner(System.in);
     public static void main (String [] args) {
         System.out.println();
         int p1NumberOfDice = 5;
@@ -23,6 +23,7 @@ public class Multiplayer
         
         while (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
             System.out.println();
+            
             //dice rolls for player 1
             rollDicePrompt(player1);
             int [] player1Roll = new int[5];
@@ -37,7 +38,7 @@ public class Multiplayer
                 } 
             }    
             System.out.println();
-            pause("end turn");
+            pause("continue");
             
             //dice rolls for player 2
             rollDicePrompt(player2);
@@ -53,10 +54,11 @@ public class Multiplayer
                 }
             }    
             System.out.println();
-            pause("end turn");
+            pause("continue");
             
             //turn 1
-            System.out.println(player1 + ", it is your turn to bid.\nQuantity: ");
+            System.out.println(player1.toUpperCase() + "'S TURN");
+            System.out.println("Bid a quantity and face value.\nQuantity: ");
             int quantity = reader.nextInt();
             reader.nextLine();
             System.out.print("Face Value: ");
@@ -69,8 +71,8 @@ public class Multiplayer
             boolean round = true;
             while (round) {
                 if (player == 2) {
-                    System.out.println();
-                    System.out.println(player2 + ", would you like to challenge or make a higher bid? (c/b)");              
+                    System.out.println("\n" + player2.toUpperCase() + "'S TURN");
+                    System.out.println("Would you like to challenge or make a higher bid? (c/b)");              
                     String decision = reader.nextLine();
                     if (decision.equals("c")){
                         int matchingFaces = 0;
@@ -116,16 +118,22 @@ public class Multiplayer
                         String bidDecision = reader.nextLine();
                         while(true){
                             if(bidDecision.equals("f")){
-                                System.out.println("Please enter the new face value: " );
-                                faceValue = reader.nextInt();
+                                System.out.println("Enter a higher face value: " );
+                                int newFaceValue = reader.nextInt();
                                 reader.nextLine();
-                                break;
+                                if (newFaceValue > faceValue) {
+                                    faceValue = newFaceValue;
+                                    break;
+                                }
                             }
                             else if(bidDecision.equals("q")){
-                                System.out.println("Please enter a new quantity: ");
-                                quantity = reader.nextInt();
+                                System.out.println("Enter a higher quantity: ");
+                                int newQuantity = reader.nextInt();
                                 reader.nextLine();
-                                break;
+                                if (newQuantity > quantity) {
+                                    quantity = newQuantity;
+                                    break;
+                                }
                             }
                         }
                         System.out.println(player2 + " bidded " + quantity + " " + faceValue + "'s.");
@@ -133,8 +141,8 @@ public class Multiplayer
                     player = 1;
                 }
                 else if (player == 1) {
-                    System.out.println();
-                    System.out.println(player1 + ", would you like to challenge or make a higher bid? (c/b)");              
+                    System.out.println("\n" + player1.toUpperCase() + "'S TURN");
+                    System.out.println("Would you like to challenge or make a higher bid? (c/b)");              
                     String decision = reader.nextLine();
                     if (decision.equals("c")){
                         int matchingFaces = 0;
@@ -180,16 +188,22 @@ public class Multiplayer
                         String bidDecision = reader.nextLine();
                         while(true){
                             if(bidDecision.equals("f")){
-                                System.out.println("Please enter the new face value: " );
-                                faceValue = reader.nextInt();
+                                System.out.println("Enter a higher face value: " );
+                                int newFaceValue = reader.nextInt();
                                 reader.nextLine();
-                                break;
+                                if (newFaceValue > faceValue) {
+                                    faceValue = newFaceValue;
+                                    break;
+                                }
                             }
                             else if(bidDecision.equals("q")){
-                                System.out.println("Please enter a new quantity: ");
-                                quantity = reader.nextInt();
+                                System.out.println("Enter a higher quantity: ");
+                                int newQuantity = reader.nextInt();
                                 reader.nextLine();
-                                break;
+                                if (newQuantity > quantity) {
+                                    quantity = newQuantity;
+                                    break;
+                                }
                             }
                         }
                         System.out.println(player1 + " bidded " + quantity + " " + faceValue + "'s.");
@@ -200,7 +214,7 @@ public class Multiplayer
         }
     }
     public static void rollDicePrompt(String player) {
-        System.out.println(player + ", press enter to roll the dice");
+        System.out.println(player + ", press enter to roll the dice.");
         reader.nextLine();
     }
     public static int diceRoll() {
