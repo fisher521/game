@@ -11,19 +11,43 @@ public class Singleplayer
     public static void main (String [] args) {
         Random generator = new Random();
         Scanner reader = new Scanner(System.in);
+        int challenge = generator.nextInt(3) + 1;
+        
+        int p1NumberOfDice = 5;
+        int p2NumberOfDice = 5;
+        
         boolean play = true;
         while (play == true) {
-            System.out.println("Press enter to roll the dice. ");
-            String roll = reader.nextLine();
+            System.out.println("Enter your name: ");
+            String name = reader.nextLine();
+
           
-            int r1 = generator.nextInt(6) + 1;
+            /*int r1 = generator.nextInt(6) + 1;
             int r2 = generator.nextInt(6) + 1;
             int r3 = generator.nextInt(6) + 1;
             int r4 = generator.nextInt(6) + 1;
             int r5 = generator.nextInt(6) + 1;
-        
             
-            System.out.println ("Rolls: " + r1 + ", " + r2 + ", " + r3 + ", " + r4 + ", " + r5);
+            int c1 = generator.nextInt(6) + 1;
+            int c2 = generator.nextInt(6) + 1;
+            int c3 = generator.nextInt(6) + 1;
+            int c4 = generator.nextInt(6) + 1;
+            int c5 = generator.nextInt(6) + 1;*/
+            
+            Multiplayer.rollDicePrompt(name);
+            int [] player1Roll = new int[5];
+            for(int i = 0; i < 5; i++) {
+              player1Roll[i] = Multiplayer.diceRoll();
+            }
+            System.out.print("Rolls: ");
+            for(int i = 1; i <= p1NumberOfDice; i++) {     
+              System.out.print (player1Roll[i - 1]);
+              if (p1NumberOfDice - i >= 1) {
+                System.out.print (", ");
+              }
+              if (p1NumberOfDice - i == 0)
+                System.out.println();
+            }
             
             System.out.println("It is your turn to bid.\nFace value: ");
             
@@ -33,17 +57,37 @@ public class Singleplayer
             
             int quantity = reader.nextInt();
             
-            //int computerQuantity = generator.nextInt(6 - quantity + 1) + quantity;
-              
-            //System.out.println(computerQuantity);
+            int computerCount = generator.nextInt(2) + 1;
+            
+            System.out.println(computerCount);
+                              
+            
+            int computerQuantity = generator.nextInt(6 - (quantity + 1) + 1) + (quantity + 1);
+            
+            int computerFaceValue = generator.nextInt(6 - (faceValue + 1) + 1) + (faceValue + 1);
+
             
             System.out.println("You bidded " + quantity + " " + faceValue + "'s.");
+
+            if(challenge == 1){
+              System.out.println("Your opponent challenged your bid.");
+              //if(
+            }
             
-            int computerQuantity = quantity + 1;
-            
-            System.out.println("Your opponent bidded " + computerQuantity + " " + faceValue + "'s.");
-            
-            System.out.println("Would you like to challenge or continue bidding? (c/b)");
+            else{
+              
+              if(computerCount == 1){
+                
+              System.out.println("Your opponent bidded " + computerQuantity + " " + faceValue + "'s.");     
+                
+              }
+              else{
+                System.out.println("Your opponent bidded " + quantity + " " + computerFaceValue + "'s.");
+              }
+                
+              System.out.println("Would you like to challenge or continue bidding? (c/b)");
+            }
+
             
             reader.nextLine();
             
@@ -54,6 +98,7 @@ public class Singleplayer
             
             while(count == 1){
               if(cont.equals("c")){
+                
                 
                 count += 1;
               }
@@ -84,7 +129,7 @@ public class Singleplayer
               }
             }
             reader.nextLine();
-            while (true) {
+            /*while (true) {
                 System.out.println ("Play again? (y/n)");
                 String response = reader.nextLine();
                 if (response.equals("y")){
@@ -94,7 +139,8 @@ public class Singleplayer
                     play = false;
                     break;
                 }
-            }
+            }*/
         }
     }
+    
 }

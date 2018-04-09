@@ -64,7 +64,7 @@ public class Multiplayer
         return generator.nextInt(6) + 1;
     }
     public static void rollDicePrompt(String playerToken) {
-        System.out.println(playerToken + ", press enter to roll the dice.");
+        System.out.println(playerToken + ", press enter to roll the dice");
         reader.nextLine();
     }
     public static void endTurn() {
