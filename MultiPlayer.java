@@ -111,7 +111,9 @@ public class Multiplayer
                         }
                         round = false;
                         System.out.println();
-                        pause("begin new round");
+                        if (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
+                            pause("begin new round");
+                        }
                     }
                     if (decision.equals("b")) {
                         System.out.println("Would you like to enter a higher face value or a higher quantity? (f/q)");
@@ -181,7 +183,9 @@ public class Multiplayer
                         }
                         round = false;
                         System.out.println();
-                        pause("begin new round");                        
+                        if (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
+                            pause("begin new round");
+                        }
                     }
                     if (decision.equals("b")) {
                         System.out.println("Would you like to enter a higher face value or a higher quantity? (f/q)");
@@ -211,6 +215,12 @@ public class Multiplayer
                     player = 2;
                 }
             }
+        }
+        if (p1NumberOfDice == 0) {
+            System.out.println (player2 + " wins!");
+        }
+        else if (p2NumberOfDice == 0) {
+            System.out.println (player1 + " wins!");
         }
     }
     public static void rollDicePrompt(String player) {
