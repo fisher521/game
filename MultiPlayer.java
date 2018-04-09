@@ -56,19 +56,20 @@ public class Multiplayer
             pause("end turn");
             
             //turn 1
-            System.out.println(player1 + " , it is your turn to bid.\nFace value: ");
-            int faceValue = reader.nextInt();
-            reader.nextLine();
-            System.out.print("Quantity: ");
+            System.out.println(player1 + ", it is your turn to bid.\nQuantity: ");
             int quantity = reader.nextInt();
             reader.nextLine();
-            System.out.println("You bidded " + quantity + " " + faceValue + "'s.");
+            System.out.print("Face Value: ");
+            int faceValue = reader.nextInt();
+            reader.nextLine();
+            System.out.println(player1 + " bidded " + quantity + " " + faceValue + "'s.");
             
             //all subsequent turns
             int player = 2;
             boolean round = true;
             while (round) {
                 if (player == 2) {
+                    System.out.println();
                     System.out.println(player2 + ", would you like to challenge or make a higher bid? (c/b)");              
                     String decision = reader.nextLine();
                     if (decision.equals("c")){
@@ -101,13 +102,14 @@ public class Multiplayer
                         if (matchingFaces >= quantity) {
                             p2NumberOfDice --;
                             System.out.println (player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
-                            round = false;
                         }
                         else {
                             p1NumberOfDice --;
                             System.out.println (player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
-                            round = false;
                         }
+                        round = false;
+                        System.out.println();
+                        pause("begin new round");
                     }
                     if (decision.equals("b")) {
                         System.out.println("Would you like to enter a higher face value or a higher quantity? (f/q)");
@@ -126,10 +128,12 @@ public class Multiplayer
                                 break;
                             }
                         }
+                        System.out.println(player2 + " bidded " + quantity + " " + faceValue + "'s.");
                     }
                     player = 1;
                 }
                 else if (player == 1) {
+                    System.out.println();
                     System.out.println(player1 + ", would you like to challenge or make a higher bid? (c/b)");              
                     String decision = reader.nextLine();
                     if (decision.equals("c")){
@@ -162,13 +166,14 @@ public class Multiplayer
                         if (matchingFaces >= quantity) {
                             p1NumberOfDice --;
                             System.out.println (player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
-                            round = false;
                         }
                         else {
                             p2NumberOfDice --;
                             System.out.println (player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
-                            round = false;
                         }
+                        round = false;
+                        System.out.println();
+                        pause("begin new round");                        
                     }
                     if (decision.equals("b")) {
                         System.out.println("Would you like to enter a higher face value or a higher quantity? (f/q)");
@@ -187,6 +192,7 @@ public class Multiplayer
                                 break;
                             }
                         }
+                        System.out.println(player1 + " bidded " + quantity + " " + faceValue + "'s.");
                     }
                     player = 2;
                 }
