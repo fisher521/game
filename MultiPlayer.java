@@ -11,27 +11,37 @@ public class Multiplayer
     public static final Random generator = new Random();
     public static final Scanner reader = new Scanner(System.in);
     public static void main (String [] args) {
-        int [] player1Roll = new int[5];
+        int p1NumberOfDice = 5;
+        int p2NumberOfDice = 5;
+        
         rollDicePrompt("Player 1");
+        int [] player1Roll = new int[5];
         for(int i = 0; i < 5; i++) {
             player1Roll[i] = diceRoll();
         }
-        int p1NumberOfDice = 5;
         System.out.print("Rolls: ");
         for(int i = 1; i <= p1NumberOfDice; i++) {     
-            System.out.print (player1Roll[i - 1] + ", ");   
+            System.out.print (player1Roll[i - 1]);
+            if (p1NumberOfDice - i >= 1) {
+                System.out.print (", ");
+            } 
         }    
         System.out.println();
         endTurn();
         
         rollDicePrompt("Player 2");
-        //player 2 dice roll variables
-        int p2r1 = diceRoll();
-        int p2r2 = diceRoll();
-        int p2r3 = diceRoll();
-        int p2r4 = diceRoll();
-        int p2r5 = diceRoll();
-        System.out.println ("Rolls: " + p2r1 + ", " + p2r2 + ", " + p2r3 + ", " + p2r4 + ", " + p2r5);
+        int [] player2Roll = new int[5];
+        for(int i = 0; i < 5; i++) {
+            player2Roll[i] = diceRoll();
+        }
+        System.out.print("Rolls: ");
+        for(int i = 1; i <= p2NumberOfDice; i++) {     
+            System.out.print (player2Roll[i - 1]);
+            if (p2NumberOfDice - i >= 1) { 
+                System.out.print (", ");
+            }
+        }    
+        System.out.println();
         endTurn();
 
         System.out.println("Player 1, it is your turn to bid.\nFace value: ");
