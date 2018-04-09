@@ -11,6 +11,7 @@ public class Multiplayer
     public static final Random generator = new Random();
     public static final Scanner reader = new Scanner(System.in);
     public static void main (String [] args) {
+        System.out.println();
         int p1NumberOfDice = 5;
         int p2NumberOfDice = 5;
         
@@ -21,6 +22,7 @@ public class Multiplayer
         String player2 = reader.nextLine();
         
         while (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
+            System.out.println();
             //dice rolls for player 1
             rollDicePrompt(player1);
             int [] player1Roll = new int[5];
