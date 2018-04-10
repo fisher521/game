@@ -6,11 +6,9 @@ import java.util.Scanner;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class LiarsDice
-{
+public class LiarsDice {
     public static void main (String [] args) {
         System.out.println ("Welcome to Liar's Dice!");
-        
         while (true) {
             Scanner reader = new Scanner (System.in);
             System.out.print ("\n");

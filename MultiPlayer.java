@@ -7,8 +7,7 @@ import java.util.Random;
  * @author Justin
  * @version 4/9/18
  */
-public class Multiplayer
-{
+public class Multiplayer {
     public static Random generator = new Random();
     public static Scanner reader = new Scanner(System.in);
     public static void main (String [] args) {
