@@ -1,10 +1,11 @@
 import java.util.Scanner;
 import java.util.Random;
 /**
- * Write a description of class SinglePlayer here.
+ * 2 Player version of Liar's dice.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Fisher
+ * @author Justin
+ * @version 4/9/18
  */
 public class Multiplayer
 {
