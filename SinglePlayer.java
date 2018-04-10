@@ -1,146 +1,219 @@
 import java.util.Scanner;
 import java.util.Random;
 /**
- * Write a description of class SinglePlayer here.
+ * 1 Player version of Liar's dice, where you play against the CPU.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Justin
+ * @author Fisher
+ * @version 4/9/18
  */
 public class Singleplayer
 {
+    public static Random generator = new Random();
+    public static Scanner reader = new Scanner(System.in);
     public static void main (String [] args) {
-        Random generator = new Random();
-        Scanner reader = new Scanner(System.in);
-        int challenge = generator.nextInt(3) + 1;
-        
+        System.out.println();
         int p1NumberOfDice = 5;
         int p2NumberOfDice = 5;
         
-        boolean play = true;
-        while (play == true) {
-            System.out.println("Enter your name: ");
-            String name = reader.nextLine();
-
-          
-            /*int r1 = generator.nextInt(6) + 1;
-            int r2 = generator.nextInt(6) + 1;
-            int r3 = generator.nextInt(6) + 1;
-            int r4 = generator.nextInt(6) + 1;
-            int r5 = generator.nextInt(6) + 1;
+        System.out.println ("What's your name, player? ");
+        String player1 = reader.nextLine();
+        
+        System.out.println ("What do you want your opponent's name to be?");
+        String player2 = reader.nextLine();
+        
+        while (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
+            System.out.println();
             
-            int c1 = generator.nextInt(6) + 1;
-            int c2 = generator.nextInt(6) + 1;
-            int c3 = generator.nextInt(6) + 1;
-            int c4 = generator.nextInt(6) + 1;
-            int c5 = generator.nextInt(6) + 1;*/
-            
-            Multiplayer.rollDicePrompt(name);
+            //dice rolls for player 1
+            Multiplayer.rollDicePrompt(player1);
             int [] player1Roll = new int[5];
             for(int i = 0; i < 5; i++) {
-              player1Roll[i] = Multiplayer.diceRoll();
+                player1Roll[i] = Multiplayer.diceRoll();
             }
             System.out.print("Rolls: ");
             for(int i = 1; i <= p1NumberOfDice; i++) {     
-              System.out.print (player1Roll[i - 1]);
-              if (p1NumberOfDice - i >= 1) {
-                System.out.print (", ");
-              }
-              if (p1NumberOfDice - i == 0)
-                System.out.println();
-            }
+                System.out.print (player1Roll[i - 1]);
+                if (p1NumberOfDice - i >= 1) {
+                    System.out.print (", ");
+                } 
+            }    
+            System.out.println();
+            Multiplayer.pause("continue");
             
-            System.out.println("It is your turn to bid.\nFace value: ");
+            //Player 2 is computer
+            int [] player2Roll = new int[5];
+            for(int i = 0; i < 5; i++) {
+                player2Roll[i] = Multiplayer.diceRoll();
+            }    
             
-            int faceValue = reader.nextInt();
-            
-            System.out.print("Quantity: ");
-            
+            //turn 1
+            System.out.println(player1.toUpperCase() + "'S TURN");
+            System.out.println("Bid a quantity and face value.\nQuantity: ");
             int quantity = reader.nextInt();
-            
-            int computerCount = generator.nextInt(2) + 1;
-            
-            System.out.println(computerCount);
-                              
-            
-            int computerQuantity = generator.nextInt(6 - (quantity + 1) + 1) + (quantity + 1);
-            
-            int computerFaceValue = generator.nextInt(6 - (faceValue + 1) + 1) + (faceValue + 1);
-
-            
-            System.out.println("You bidded " + quantity + " " + faceValue + "'s.");
-
-            if(challenge == 1){
-              System.out.println("Your opponent challenged your bid.");
-              //if(
-            }
-            
-            else{
-              
-              if(computerCount == 1){
-                
-              System.out.println("Your opponent bidded " + computerQuantity + " " + faceValue + "'s.");     
-                
-              }
-              else{
-                System.out.println("Your opponent bidded " + quantity + " " + computerFaceValue + "'s.");
-              }
-                
-              System.out.println("Would you like to challenge or continue bidding? (c/b)");
-            }
-
-            
             reader.nextLine();
-            
-            String cont = reader.nextLine();
-            
-            int count = 1;
-            int count2 = 1;
-            
-            while(count == 1){
-              if(cont.equals("c")){
-                
-                
-                count += 1;
-              }
-              else if(cont.equals("b")){
-                System.out.println("Would you like to enter a higher face value or a higher quantity? (f/q)");
-                String decision = reader.nextLine();
-                while(count2 == 1){
-                  if(decision.equals("f")){
-                    System.out.println("Please enter the new face value: " );
-                    faceValue = reader.nextInt();
-                    count2 += 1;
-                  }
-                  else if(decision.equals("q")){
-                    System.out.println("Please enter a new quantity: ");
-                    quantity = reader.nextInt();
-                    count2 += 1;
-                  }
-                  else{
-                    System.out.println("Please enter f or q: ");
-                    decision = reader.nextLine();
-                  }
-                }
-               
-                 }
-              else{
-                System.out.println("Please enter c or b: ");
-                cont = reader.nextLine();
-              }
-            }
+            System.out.print("Face Value: ");
+            int faceValue = reader.nextInt();
             reader.nextLine();
-            /*while (true) {
-                System.out.println ("Play again? (y/n)");
-                String response = reader.nextLine();
-                if (response.equals("y")){
-                    break;
+            System.out.println(player1 + " bidded " + quantity + " " + faceValue + "'s.");
+            
+            //all subsequent turns
+            int player = 2;
+            boolean round = true;
+            while (round) {
+                if (player == 2) {
+                    System.out.println("\n" + player2.toUpperCase() + "'S TURN");
+                    int p2matchingFaces = 0;
+                    //counts how many of the current face the computer has
+                    for (int i = 0; i < p2NumberOfDice; i ++) {
+                        if (player2Roll[i] == faceValue) {
+                            p2matchingFaces ++;
+                        }
+                    }
+                    //the computer's guess on how many of the current face the player has
+                    int guess = generator.nextInt(3) + 1;
+                    if (quantity > p2matchingFaces + guess){
+                        System.out.println (player2 + " challenged your bid!");
+                        int matchingFaces = 0;
+                        System.out.print("\n" + player1 + "'s Rolls: ");
+                        for(int i = 1; i <= p1NumberOfDice; i++) {     
+                            System.out.print (player1Roll[i - 1]);
+                            if (p1NumberOfDice - i >= 1) {
+                                System.out.print (", ");
+                            } 
+                        }
+                        System.out.print("\n" + player2 + "'s Rolls: ");
+                        for(int i = 1; i <= p2NumberOfDice; i++) {     
+                            System.out.print (player2Roll[i - 1]);
+                            if (p2NumberOfDice - i >= 1) {
+                                System.out.print (", ");
+                            } 
+                        }
+                        for (int i = 0; i < p1NumberOfDice; i++) {
+                            if (player1Roll[i] == faceValue) {
+                                matchingFaces ++;
+                            }
+                        }
+                        for (int i = 0; i < p2NumberOfDice; i ++) {
+                            if (player2Roll[i] == faceValue) {
+                                matchingFaces ++;
+                            }
+                        }
+                        System.out.println ("\nMatching faces: " + matchingFaces);
+                        if (matchingFaces >= quantity) {
+                            p2NumberOfDice --;
+                            System.out.println (player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
+                        }
+                        else {
+                            p1NumberOfDice --;
+                            System.out.println (player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
+                        }
+                        round = false;
+                        System.out.println();
+                        if (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
+                            Multiplayer.pause("begin new round");
+                        }
+                    }
+                    else {
+                        //computer bids
+                        String bidDecision = "q";
+                        if(bidDecision.equals("f")){
+                            //bids a higher face value
+                            int newFaceValue = reader.nextInt();
+                        }
+                        else if(bidDecision.equals("q")){
+                            //bids a higher quantity
+                            int chance = generator.nextInt(4) + 1;
+                            if (chance <= 3) {
+                                quantity++;
+                            }
+                            else if (chance == 4) {
+                                quantity += 2;
+                            }
+                        }
+                        System.out.println(player2 + " bidded " + quantity + " " + faceValue + "'s.");
+                    }
+                    player = 1;
                 }
-                else if (response.equals("n")){
-                    play = false;
-                    break;
+                else if (player == 1) {
+                    System.out.println("\n" + player1.toUpperCase() + "'S TURN");
+                    System.out.println("Would you like to challenge or make a higher bid? (c/b)");              
+                    String decision = reader.nextLine();
+                    if (decision.equals("c")){
+                        int matchingFaces = 0;
+                        System.out.print("\n" + player1 + "'s Rolls: ");
+                        for(int i = 1; i <= p1NumberOfDice; i++) {     
+                            System.out.print (player1Roll[i - 1]);
+                            if (p1NumberOfDice - i >= 1) {
+                                System.out.print (", ");
+                            } 
+                        }
+                        System.out.print("\n" + player2 + "'s Rolls: ");
+                        for(int i = 1; i <= p2NumberOfDice; i++) {     
+                            System.out.print (player2Roll[i - 1]);
+                            if (p2NumberOfDice - i >= 1) {
+                                System.out.print (", ");
+                            } 
+                        }
+                        for (int i = 0; i < p1NumberOfDice; i++) {
+                            if (player1Roll[i] == faceValue) {
+                                matchingFaces ++;
+                            }
+                        }
+                        for (int i = 0; i < p2NumberOfDice; i ++) {
+                            if (player2Roll[i] == faceValue) {
+                                matchingFaces ++;
+                            }
+                        }
+                        System.out.println ("\nMatching faces: " + matchingFaces);
+                        if (matchingFaces >= quantity) {
+                            p1NumberOfDice --;
+                            System.out.println (player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
+                        }
+                        else {
+                            p2NumberOfDice --;
+                            System.out.println (player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
+                        }
+                        round = false;
+                        System.out.println();
+                        if (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
+                            Multiplayer.pause("begin new round");
+                        }
+                    }
+                    if (decision.equals("b")) {
+                        System.out.println("Would you like to enter a higher face value or a higher quantity? (f/q)");
+                        String bidDecision = reader.nextLine();
+                        while(true){
+                            if(bidDecision.equals("f")){
+                                System.out.println("Enter a higher face value: " );
+                                int newFaceValue = reader.nextInt();
+                                reader.nextLine();
+                                if (newFaceValue > faceValue) {
+                                    faceValue = newFaceValue;
+                                    break;
+                                }
+                            }
+                            else if(bidDecision.equals("q")){
+                                System.out.println("Enter a higher quantity: ");
+                                int newQuantity = reader.nextInt();
+                                reader.nextLine();
+                                if (newQuantity > quantity) {
+                                    quantity = newQuantity;
+                                    break;
+                                }
+                            }
+                        }
+                        System.out.println(player1 + " bidded " + quantity + " " + faceValue + "'s.");
+                    }
+                    player = 2;
                 }
-            }*/
+            }
+        }
+        if (p1NumberOfDice == 0) {
+            System.out.println (player2 + " wins!");
+        }
+        else if (p2NumberOfDice == 0) {
+            System.out.println (player1 + " wins!");
         }
     }
-    
 }
