@@ -15,10 +15,10 @@ public class Singleplayer {
         int p1NumberOfDice = 5;
         int p2NumberOfDice = 5;
         
-        System.out.println ("What's your name, player? ");
+        System.out.println("What's your name, player? ");
         String player1 = reader.nextLine();
         
-        System.out.println ("What do you want your opponent's name to be?");
+        System.out.println("What do you want your opponent's name to be?");
         String player2 = reader.nextLine();
         
         while (p1NumberOfDice > 0 && p2NumberOfDice > 0) {
@@ -32,9 +32,9 @@ public class Singleplayer {
             }
             System.out.print("Rolls: ");
             for(int i = 1; i <= p1NumberOfDice; i++) {     
-                System.out.print (player1Roll[i - 1]);
+                System.out.print(player1Roll[i - 1]);
                 if (p1NumberOfDice - i >= 1) {
-                    System.out.print (", ");
+                    System.out.print(", ");
                 } 
             }    
             System.out.println();
@@ -62,50 +62,50 @@ public class Singleplayer {
             while (round) {
                 if (player == 2) {
                     System.out.println("\n" + player2.toUpperCase() + "'S TURN");
-                    int p2matchingFaces = 0;
+                    int p2MatchingFaces = 0;
                     //counts how many of the current face the computer has
-                    for (int i = 0; i < p2NumberOfDice; i ++) {
+                    for (int i = 0; i < p2NumberOfDice; i++) {
                         if (player2Roll[i] == faceValue) {
-                            p2matchingFaces ++;
+                            p2MatchingFaces++;
                         }
                     }
                     //the computer's guess on how many of the current face the player has
                     int guess = generator.nextInt(3) + 1;
-                    if (quantity > p2matchingFaces + guess){
-                        System.out.println (player2 + " challenged your bid!");
+                    if (quantity > p2MatchingFaces + guess || faceValue > 6 || quantity >= p2MatchingFaces + p1NumberOfDice){
+                        System.out.println(player2 + " challenged your bid!");
                         int matchingFaces = 0;
                         System.out.print("\n" + player1 + "'s Rolls: ");
                         for(int i = 1; i <= p1NumberOfDice; i++) {     
-                            System.out.print (player1Roll[i - 1]);
+                            System.out.print(player1Roll[i - 1]);
                             if (p1NumberOfDice - i >= 1) {
-                                System.out.print (", ");
+                                System.out.print(", ");
                             } 
                         }
                         System.out.print("\n" + player2 + "'s Rolls: ");
                         for(int i = 1; i <= p2NumberOfDice; i++) {     
-                            System.out.print (player2Roll[i - 1]);
+                            System.out.print(player2Roll[i - 1]);
                             if (p2NumberOfDice - i >= 1) {
-                                System.out.print (", ");
+                                System.out.print(", ");
                             } 
                         }
                         for (int i = 0; i < p1NumberOfDice; i++) {
                             if (player1Roll[i] == faceValue) {
-                                matchingFaces ++;
+                                matchingFaces++;
                             }
                         }
-                        for (int i = 0; i < p2NumberOfDice; i ++) {
+                        for (int i = 0; i < p2NumberOfDice; i++) {
                             if (player2Roll[i] == faceValue) {
-                                matchingFaces ++;
+                                matchingFaces++;
                             }
                         }
-                        System.out.println ("\nMatching faces: " + matchingFaces);
+                        System.out.println("\nMatching faces: " + matchingFaces);
                         if (matchingFaces >= quantity) {
-                            p2NumberOfDice --;
-                            System.out.println (player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
+                            p2NumberOfDice--;
+                            System.out.println(player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
                         }
                         else {
-                            p1NumberOfDice --;
-                            System.out.println (player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
+                            p1NumberOfDice--;
+                            System.out.println(player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
                         }
                         round = false;
                         System.out.println();
@@ -142,36 +142,36 @@ public class Singleplayer {
                         int matchingFaces = 0;
                         System.out.print("\n" + player1 + "'s Rolls: ");
                         for(int i = 1; i <= p1NumberOfDice; i++) {     
-                            System.out.print (player1Roll[i - 1]);
+                            System.out.print(player1Roll[i - 1]);
                             if (p1NumberOfDice - i >= 1) {
-                                System.out.print (", ");
+                                System.out.print(", ");
                             } 
                         }
                         System.out.print("\n" + player2 + "'s Rolls: ");
                         for(int i = 1; i <= p2NumberOfDice; i++) {     
-                            System.out.print (player2Roll[i - 1]);
+                            System.out.print(player2Roll[i - 1]);
                             if (p2NumberOfDice - i >= 1) {
-                                System.out.print (", ");
+                                System.out.print(", ");
                             } 
                         }
                         for (int i = 0; i < p1NumberOfDice; i++) {
                             if (player1Roll[i] == faceValue) {
-                                matchingFaces ++;
+                                matchingFaces++;
                             }
                         }
-                        for (int i = 0; i < p2NumberOfDice; i ++) {
+                        for (int i = 0; i < p2NumberOfDice; i++) {
                             if (player2Roll[i] == faceValue) {
-                                matchingFaces ++;
+                                matchingFaces++;
                             }
                         }
-                        System.out.println ("\nMatching faces: " + matchingFaces);
+                        System.out.println("\nMatching faces: " + matchingFaces);
                         if (matchingFaces >= quantity) {
-                            p1NumberOfDice --;
-                            System.out.println (player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
+                            p1NumberOfDice--;
+                            System.out.println(player1 + " has lost a die and now has " + p1NumberOfDice + " dice!");
                         }
                         else {
-                            p2NumberOfDice --;
-                            System.out.println (player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
+                            p2NumberOfDice--;
+                            System.out.println(player2 + " has lost a die and now has " + p2NumberOfDice + " dice!");
                         }
                         round = false;
                         System.out.println();
@@ -209,10 +209,10 @@ public class Singleplayer {
             }
         }
         if (p1NumberOfDice == 0) {
-            System.out.println (player2 + " wins!");
+            System.out.println(player2 + " wins!");
         }
         else if (p2NumberOfDice == 0) {
-            System.out.println (player1 + " wins!");
+            System.out.println(player1 + " wins!");
         }
     }
 }
