@@ -1,10 +1,9 @@
-
 import java.util.Scanner;
 /**
  * Liars Dice Main Menu
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Fisher
+ * @version 4/10/18
  */
 public class LiarsDice {
     public static void main (String [] args) {
