@@ -33,7 +33,7 @@ public class LiarsDice
                 System.out.println ("Rules: ");
                 System.out.println ("The game is played over multiple rounds.");
                 
-                System.out.println ("The first player then states a bid consisting of a face (1's, 5's, etc.) and a quantity. " +
+                System.out.println ("The first player states a bid consisting of a face (1's, 5's, etc.) and a quantity. " +
                 "\nThe quantity represents the player's guess as to how many of each face have been rolled by all the players at the table,\nincluding themselves. " +
                 "\nFor example, a player might bid \"five 2's.\"");
                 System.out.println ("Each subsequent player can either then bid a higher quantity of any face, bid the same quantity of a higher face,\nor they can challenge the previous bid. ");
