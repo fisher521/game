@@ -224,7 +224,7 @@ public class Multiplayer {
         System.out.println("Press enter to " + reason + "...");
         reader.nextLine();
         //clears screen
-        for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 30; i++) {
             System.out.println("\n");
         }
     }
