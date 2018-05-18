@@ -157,7 +157,19 @@ public class Multiplayer {
             }
         }
     }
-    public static void printRolls (String player) {
+    public void turn(int turnNumber, int faceValue, int quantity, int numberOfPlayers) {
+        System.out.println("\n" + player1.getPlayerName().toUpperCase() + "'S TURN");
+        
+        while (true) {
+            System.out.println("Would you like to challenge or make a higher bid? (c/b)");              
+            String decision = Multiplayer.reader.nextLine();
+            if (decision.equals("c")){
+                Multiplayer.challenge(faceValue, quantity, numberOfPlayers);
+            }
+            if (decision.equals("b")) {
+                bid(faceValue, quantity);
+            }
+        }
     }
     public void challenge(int faceValue, int quantity, int numberOfPlayers) {
         //prints rolls
@@ -192,6 +204,21 @@ public class Multiplayer {
         }
         turn = 2;
         break;
+    }
+    public void bid(int faceValue, int quantity){
+        while(true){
+            System.out.println("Would you like to enter a higher face value or a higher quantity? (f/q)");
+            String bidDecision = Multiplayer.reader.nextLine();
+            if(bidDecision.equals("f")){
+                faceValue = Multiplayer.higherValue("face value", faceValue);
+                break;
+            }
+            else if(bidDecision.equals("q")){
+                quantity = Multiplayer.higherValue("quantity", quantity);
+                break;
+            }
+        }
+        System.out.println(playerName + " bidded " + quantity + " " + faceValue + "'s.");
     }
 }
 
