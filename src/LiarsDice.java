@@ -13,20 +13,17 @@ public class LiarsDice {
             System.out.print ("\n");
 
             System.out.println ("Choose an option: ");
-            System.out.println ("1) Play: One Player");
-            System.out.println ("2) Play: Two Players");
-            System.out.println ("3) View Rules");
-            System.out.println ("4) View About");
-            System.out.println ("5) Quit");
-        
+            System.out.println ("1) Play");
+            System.out.println ("2) View Rules");
+            System.out.println ("3) View About");
+            System.out.println ("4) Quit");
+
             String response = reader.nextLine();
+
             if (response.equals ("1")) {
-                Singleplayer.main(null);
-            }
-            else if (response.equals ("2")) {
                 Multiplayer.main(null);
             }
-            else if (response.equals ("3")) {
+            else if (response.equals ("2")) {
                 System.out.println ("Rules: ");
                 System.out.println ("The game is played over multiple rounds.");
                 System.out.println ("To begin each round, all players roll their dice, keeping their rolls hidden from other players.");
@@ -41,12 +38,12 @@ public class LiarsDice {
                 //System.out.println ("In the event that the game comes down to two players with only a single dice each, bids are then made on the sum of both dice instead the quantity of faces rolled.") 
                 System.out.println ("This is repeated until only one player has dice left. That player is the winner.");
             }
-            else if (response.equals ("4")) {
+            else if (response.equals ("3")) {
                 System.out.println ("About: ");
                 System.out.println ("Made by Justin and Fisher");
                 System.out.println ("Credits to dicegamedepot.com for the rules");
             }
-            else if (response.equals ("5")) {
+            else if (response.equals ("4")) {
                 System.out.println ("See you another time!");                
                 break;
             }

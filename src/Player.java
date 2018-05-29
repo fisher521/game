@@ -12,8 +12,6 @@ public class Player
     private int numberOfDice;
     private int playerNumber;
     private String playerName;
-    private int quantity;
-    private int faceValue;
     int [] playerRoll = new int[5];
     
     public Player(int inputPlayerNumber, String inputPlayerName)
@@ -45,12 +43,6 @@ public class Player
     }
     public void loseDice() {
         numberOfDice--;
-    }
-    public int getQuantity() {
-        return quantity;
-    }
-    public int getFaceValue() {
-        return faceValue;
     }
 
 }
