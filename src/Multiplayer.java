@@ -64,7 +64,7 @@ public class Multiplayer {
             System.out.println("Face Value: ");
             int faceValue = reader.nextInt();
             reader.nextLine();
-            System.out.println(player1 + " bidded " + quantity + " " + faceValue + "'s.");
+            System.out.println(player1 + " bid " + quantity + " " + faceValue + "'s.");
             
             //all subsequent turns
             int player = 2;
@@ -131,7 +131,7 @@ public class Multiplayer {
                                     break;
                                 }
                             }
-                            System.out.println(player2 + " bidded " + quantity + " " + faceValue + "'s.");
+                            System.out.println(player2 + " bid " + quantity + " " + faceValue + "'s.");
                             player = 1;
                             break;
                         }
@@ -198,7 +198,7 @@ public class Multiplayer {
                                     break;
                                 }
                             }
-                            System.out.println(player1 + " bidded " + quantity + " " + faceValue + "'s.");
+                            System.out.println(player1 + " bid " + quantity + " " + faceValue + "'s.");
                             player = 2;
                             break;
                         }
